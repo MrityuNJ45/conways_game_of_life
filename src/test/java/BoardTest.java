@@ -40,6 +40,25 @@ public class BoardTest {
 
     }
 
+    @Test
+    public void expectsPopulationOfCellNotToBeRandomOnlyDeadCellsPresent(){
+
+        Board board = new Board(2,2);
+        Integer liveCells = board.numOfLiveCells();
+        assertEquals(0, liveCells);
+
+    }
+
+    @Test
+    public void expectsPopulationToBeRandomizeBothDeadCellsAndLiveCellsWillBePresent(){
+
+        Board board = new Board(2,2);
+        board.populate();
+        Integer liveCells = board.numOfLiveCells();
+        Integer deadCells = board.getNumOfElements() - liveCells;
+        assertEquals(true, liveCells > 0 && deadCells > 0);
+
+    }
 
 
 

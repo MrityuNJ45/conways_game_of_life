@@ -57,6 +57,38 @@ public class Board {
 
     }
 
+
+    public void populate(){
+
+        List<List<Cell>> randomMatrix = new ArrayList<>();
+        for(int i=0; i<rows; i++){
+            List<Cell> randomMatrixRow = new ArrayList<>();
+            for(int j=0; j<columns; j++){
+                Integer random = Math.toIntExact(Math.round(Math.random()));
+                if(random == 0){
+                    randomMatrixRow.add(new Cell(false));
+                    continue;
+                }
+                randomMatrixRow.add(new Cell(true));
+            }
+            randomMatrix.add(randomMatrixRow);
+        }
+        this.matrix = randomMatrix;
+
+    }
+
+    public Integer numOfLiveCells(){
+
+        Integer liveCells = 0;
+        for(List<Cell> cellList : this.matrix){
+            for(Cell cell : cellList){
+                if(cell.isAlive()) liveCells++;
+            }
+        }
+        return liveCells;
+
+    }
+
 //    public void printBoard(){
 //
 //        for(List<Cell> list : this.matrix){
