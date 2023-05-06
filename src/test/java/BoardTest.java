@@ -97,6 +97,85 @@ public class BoardTest {
 
     }
 
+    @Test
+    public void expectsToGiveALiveCellWhenADeadCellIsSurroundedBy3LiveCells(){
+
+        List<List<Cell>> aMatrix = new ArrayList<>();
+        List<Cell> cellList = new ArrayList<>();
+        cellList.add(new Cell(false));
+        cellList.add(new Cell(true));
+        List<Cell> cellList1 = new ArrayList<>();
+        cellList1.add(new Cell(true));
+        cellList1.add(new Cell(true));
+        aMatrix.add(cellList);
+        aMatrix.add(cellList1);
+        Board board = new Board(aMatrix);
+        Cell resultCell = board.cellForNextGeneration(0,0);
+        assertEquals(true,resultCell.isAlive());
+
+    }
+
+
+    @Test
+    public void expectsToGiveALiveCellWhenALiveCellIsSurroundedWith2or3LiveNeighbours(){
+
+        List<List<Cell>> aMatrix = new ArrayList<>();
+        List<Cell> cellList = new ArrayList<>();
+        cellList.add(new Cell(false));
+        cellList.add(new Cell(true));
+        List<Cell> cellList1 = new ArrayList<>();
+        cellList1.add(new Cell(true));
+        cellList1.add(new Cell(true));
+        aMatrix.add(cellList);
+        aMatrix.add(cellList1);
+        Board board = new Board(aMatrix);
+        Cell resultCell = board.cellForNextGeneration(0,1);
+        assertEquals(true,resultCell.isAlive());
+
+    }
+
+    @Test
+    public void expectsToGiveADeadCellWhenALiveCellIsSurroundedWithLessThan2LiveCells(){
+
+        List<List<Cell>> aMatrix = new ArrayList<>();
+        List<Cell> cellList = new ArrayList<>();
+        cellList.add(new Cell(false));
+        cellList.add(new Cell(false));
+        List<Cell> cellList1 = new ArrayList<>();
+        cellList1.add(new Cell(true));
+        cellList1.add(new Cell(true));
+        aMatrix.add(cellList);
+        aMatrix.add(cellList1);
+        Board board = new Board(aMatrix);
+        Cell resultCell = board.cellForNextGeneration(1,0);
+        assertEquals(false,resultCell.isAlive());
+
+    }
+
+    @Test
+    public void expectsToGiveADeadCellWhenALiveCellIsSurroundedWithMoreThan3LiveCells(){
+
+        List<List<Cell>> aMatrix = new ArrayList<>();
+        List<Cell> cellList = new ArrayList<>();
+        cellList.add(new Cell(false));
+        cellList.add(new Cell(true));
+        cellList.add(new Cell(true));
+        List<Cell> cellList1 = new ArrayList<>();
+        cellList1.add(new Cell(true));
+        cellList1.add(new Cell(true));
+        cellList1.add(new Cell(true));
+        List<Cell> cellList2 = new ArrayList<>();
+        cellList2.add(new Cell(true));
+        cellList2.add(new Cell(true));
+        cellList2.add(new Cell(true));
+        aMatrix.add(cellList);
+        aMatrix.add(cellList1);
+        aMatrix.add(cellList2);
+        Board board = new Board(aMatrix);
+        Cell resultCell = board.cellForNextGeneration(1,1);
+        assertEquals(false,resultCell.isAlive());
+
+    }
 
 
 

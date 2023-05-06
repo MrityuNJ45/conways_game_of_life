@@ -120,6 +120,29 @@ public class Board {
 
     }
 
+    public Cell cellForNextGeneration(Integer rowNo, Integer columnNo){
+
+        Integer liveCells = countLiveNeighbours(rowNo, columnNo);
+        Cell cellAtPosition = this.matrix.get(rowNo).get(columnNo);
+        if(cellAtPosition.isAlive()){
+            if(liveCells >= 2 && liveCells <= 3){
+                return new Cell(true);
+            }
+
+        }
+        if(liveCells == 3){
+            return new Cell(true);
+        }
+        return new Cell(false);
+
+    }
+
+    public List<List<Cell>> matrixForNextGeneration(){
+
+
+
+    }
+
 
 
 }
