@@ -138,10 +138,21 @@ public class Board {
     }
 
     public List<List<Cell>> matrixForNextGeneration(){
+        List<List<Cell>> nextMatrix = new ArrayList<>();
 
+         for(int i=0; i<this.rows; i++){
+             List<Cell> nextMatrixRow = new ArrayList<>();
+             for(int j=0; j<this.columns; j++){
+                 Cell generatedCell = cellForNextGeneration(i,j);
+                 nextMatrixRow.add(generatedCell);
+             }
+             nextMatrix.add(nextMatrixRow);
+         }
 
-
+         return nextMatrix;
     }
+
+
 
 
 

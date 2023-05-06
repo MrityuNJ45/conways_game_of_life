@@ -178,5 +178,24 @@ public class BoardTest {
     }
 
 
+    @Test
+    public void expectsToGiveMatrixForNextLifeWhichWillBeDifferentThanTheFirstOne(){
+
+        List<List<Cell>> aMatrix = new ArrayList<>();
+        List<Cell> cellList = new ArrayList<>();
+        cellList.add(new Cell(false));
+        cellList.add(new Cell(false));
+        List<Cell> cellList1 = new ArrayList<>();
+        cellList1.add(new Cell(true));
+        cellList1.add(new Cell(true));
+        aMatrix.add(cellList);
+        aMatrix.add(cellList1);
+        Board board = new Board(aMatrix);
+        List<List<Cell>> nextMatrix =  board.matrixForNextGeneration();
+        assertNotEquals(nextMatrix, aMatrix);
+
+    }
+
+
 
 }
