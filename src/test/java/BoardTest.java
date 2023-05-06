@@ -60,6 +60,42 @@ public class BoardTest {
 
     }
 
+    @Test
+    public void expectsToGiveTheStatusOfNeighbourAtParticularPostion(){
+
+        List<List<Cell>> aMatrix = new ArrayList<>();
+        List<Cell> cellList = new ArrayList<>();
+        cellList.add(new Cell(false));
+        cellList.add(new Cell(true));
+        List<Cell> cellList1 = new ArrayList<>();
+        cellList1.add(new Cell(true));
+        cellList1.add(new Cell(true));
+        aMatrix.add(cellList);
+        aMatrix.add(cellList1);
+        Board board = new Board(aMatrix);
+        assertEquals(true, board.checkNeighbourAt(0,1));
+
+
+    }
+
+
+    @Test
+    public void expectsToGiveTheCountOfLiveNeighboursForACertainCell(){
+
+        List<List<Cell>> aMatrix = new ArrayList<>();
+        List<Cell> cellList = new ArrayList<>();
+        cellList.add(new Cell(false));
+        cellList.add(new Cell(true));
+        List<Cell> cellList1 = new ArrayList<>();
+        cellList1.add(new Cell(true));
+        cellList1.add(new Cell(true));
+        aMatrix.add(cellList);
+        aMatrix.add(cellList1);
+        Board board = new Board(aMatrix);
+        Integer liveNeighbours = board.countLiveNeighbours(0,0);
+        assertEquals(3,liveNeighbours);
+
+    }
 
 
 
