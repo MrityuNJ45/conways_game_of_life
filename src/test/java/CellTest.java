@@ -13,7 +13,7 @@ public class CellTest {
     @Test
     public void expectsToCreateAnDeadCell(){
         Cell cell = new Cell( false);
-        assertTrue(cell.isAlive());
+        assertFalse(cell.isAlive());
     }
 
 

@@ -11,10 +11,23 @@ public class Board {
 
     private List<List<Cell>> matrix;
 
-    public Board(Integer rows, Integer columns, List<List<Cell>> matrix){
-        this.matrix = matrix;
+    public Board(Integer rows, Integer columns) throws IllegalStateException{
+
+        if(rows <= 0 || columns <= 0){
+            throw new IllegalStateException("Rows and Columns must be above 0");
+        }
+
         this.rows = rows;
         this.columns = columns;
+        matrix = new ArrayList<>();
+        for(int i=0; i<rows; i++){
+            List<Cell> list = new ArrayList<>();
+            for(int j=0; j<columns; j++){
+                list.add(new Cell(false));
+            }
+            matrix.add(list);
+        }
+
     }
 
 
@@ -44,68 +57,68 @@ public class Board {
 
     }
 
-    public void printBoard(){
+//    public void printBoard(){
+//
+//        for(List<Cell> list : this.matrix){
+//            for(Cell cell : list){
+//                if(cell.isAlive())
+//                    System.out.print(1 + " ");
+//                else
+//                    System.out.print(0 +" ");
+//            }
+//            System.out.println();
+//        }
+//
+//
+//    }
 
-        for(List<Cell> list : this.matrix){
-            for(Cell cell : list){
-                if(cell.isAlive())
-                    System.out.print(1 + " ");
-                else
-                    System.out.print(0 +" ");
-            }
-            System.out.println();
-        }
+//    public Boolean checkNeighbourAt(Integer rowNo, Integer columnNo){
+//
+//        if(rowNo < 0 || columnNo < 0 || rowNo >= this.rows || columnNo >= this.columns){
+//            return false;
+//        }
+//
+//        return this.matrix.get(rowNo).get(columnNo).isAlive();
+//
+//    }
 
+//    public Integer countLiveNeighbours(Integer rowNo, Integer columNo){
+//
+//        Integer count = 0;
+//        if(checkNeighbourAt(rowNo + 1,columNo)) count += 1;
+//        if(checkNeighbourAt(rowNo - 1,columNo)) count += 1;
+//        if(checkNeighbourAt(rowNo,columNo + 1)) count += 1;
+//        if(checkNeighbourAt(rowNo,columNo - 1)) count += 1;
+//        if(checkNeighbourAt(rowNo + 1,columNo +1)) count += 1;
+//        if(checkNeighbourAt(rowNo + 1,columNo -1)) count += 1;
+//        if(checkNeighbourAt(rowNo - 1,columNo +1)) count += 1;
+//        if(checkNeighbourAt(rowNo - 1,columNo -1)) count += 1;
+//
+//        return count;
+//
+//
+//    }
 
-    }
-
-    public Boolean checkNeighbourAt(Integer rowNo, Integer columnNo){
-
-        if(rowNo < 0 || columnNo < 0 || rowNo >= this.rows || columnNo >= this.columns){
-            return false;
-        }
-
-        return this.matrix.get(rowNo).get(columnNo).isAlive();
-
-    }
-
-    public Integer countLiveNeighbours(Integer rowNo, Integer columNo){
-
-        Integer count = 0;
-        if(checkNeighbourAt(rowNo + 1,columNo)) count += 1;
-        if(checkNeighbourAt(rowNo - 1,columNo)) count += 1;
-        if(checkNeighbourAt(rowNo,columNo + 1)) count += 1;
-        if(checkNeighbourAt(rowNo,columNo - 1)) count += 1;
-        if(checkNeighbourAt(rowNo + 1,columNo +1)) count += 1;
-        if(checkNeighbourAt(rowNo + 1,columNo -1)) count += 1;
-        if(checkNeighbourAt(rowNo - 1,columNo +1)) count += 1;
-        if(checkNeighbourAt(rowNo - 1,columNo -1)) count += 1;
-
-        return count;
-
-
-    }
-
-    public Cell getCellForNextTick(Integer rowNo, Integer columnNo){
-
-        Integer noOfLiveNeighBours = countLiveNeighbours(rowNo,columnNo);
-        Cell cell = this.matrix.get(rowNo).get(columnNo);
-        if(cell.isAlive()){
-
-        }
-
-    }
-
-
-    public Cell getCell(Cell cell, Integer noOfLiveNeighbours){
-
-        if(cell.isAlive()){
-            if(noOfLiveNeighbours < 2){
-                return new Cell(cell.)
-            }
-        }
-
-    }
+//    public Cell getCellForNextTick(Integer rowNo, Integer columnNo){
+//
+//        Integer noOfLiveNeighBours = countLiveNeighbours(rowNo,columnNo);
+//        Cell cell = this.matrix.get(rowNo).get(columnNo);
+//        if(cell.isAlive()){
+//
+//        }
+//
+//    }
+//
+//
+//    public Cell getCell(Cell cell, Integer noOfLiveNeighbours){
+//
+//        if(cell.isAlive()){
+//            if(noOfLiveNeighbours < 2){
+//                return new Cell(cell.)
+//            }
+//        }
+//
+//    }
 
 
 
