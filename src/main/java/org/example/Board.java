@@ -86,6 +86,27 @@ public class Board {
 
     }
 
+    public Cell getCellForNextTick(Integer rowNo, Integer columnNo){
+
+        Integer noOfLiveNeighBours = countLiveNeighbours(rowNo,columnNo);
+        Cell cell = this.matrix.get(rowNo).get(columnNo);
+        if(cell.isAlive()){
+
+        }
+
+    }
+
+
+    public Cell getCell(Cell cell, Integer noOfLiveNeighbours){
+
+        if(cell.isAlive()){
+            if(noOfLiveNeighbours < 2){
+                return new Cell(cell.)
+            }
+        }
+
+    }
+
 
 
 }

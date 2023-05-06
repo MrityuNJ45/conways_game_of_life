@@ -6,13 +6,13 @@ public class CellTest {
 
     @Test
     public void expectsToCreateAnAliveCell(){
-        Cell cell = new Cell(0,0,1,1, true);
+        Cell cell = new Cell( true);
         assertTrue(cell.isAlive());
     }
 
     @Test
     public void expectsToCreateAnDeadCell(){
-        Cell cell = new Cell(0,0,1,1, false);
+        Cell cell = new Cell( false);
         assertTrue(cell.isAlive());
     }
 
