@@ -31,14 +31,16 @@ public class Board {
     }
 
     // NOTE : Just for testing purpose not to be used.
-    public Board(List<List<Cell>> matrix){
-        this.rows = matrix.size();
-        this.columns = matrix.get(0).size();
+
+
+    public Board(Integer rows, Integer columns, List<List<Cell>> matrix) throws IllegalStateException{
+        if(rows <= 0 || columns <= 0 || !(matrix instanceof List<List<Cell>>)){
+            throw new IllegalStateException("Invalid data provided...");
+        }
+        this.rows = rows;
+        this.columns = columns;
         this.matrix = matrix;
     }
-
-
-
 
     public Integer getNumOfElements(){
 
@@ -137,7 +139,7 @@ public class Board {
 
     }
 
-    public void boardForNextGeneration(){
+    public Board boardForNextGeneration(){
         List<List<Cell>> nextMatrix = new ArrayList<>();
 
          for(int i=0; i<this.rows; i++){
@@ -149,7 +151,7 @@ public class Board {
              nextMatrix.add(nextMatrixRow);
          }
 
-         this.matrix = nextMatrix;
+         return new Board(this.rows, this.columns, nextMatrix);
     }
 
     public boolean equals(Board board){
@@ -157,12 +159,6 @@ public class Board {
         return this.rows == board.rows && this.columns == board.columns && this.matrix.equals(board.matrix);
 
     }
-//    public void replaceMatrixForNextGeneration(){
-//
-//        List<List<Cell>> nextMatrix = this.matrixForNextGeneration();
-//        this.matrix = nextMatrix;
-//
-//    }
 
 
 

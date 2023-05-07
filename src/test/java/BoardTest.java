@@ -32,6 +32,38 @@ public class BoardTest {
 
 
     @Test
+    public void expectsToNotThrowExceptionWhenValidDataIsGivenFor2ndParameterizedConstructorOfBoard(){
+
+        List<List<Cell>> aMatrix = new ArrayList<>();
+        List<Cell> cellList = new ArrayList<>();
+        cellList.add(new Cell(false));
+        cellList.add(new Cell(true));
+        List<Cell> cellList1 = new ArrayList<>();
+        cellList1.add(new Cell(true));
+        cellList1.add(new Cell(true));
+        aMatrix.add(cellList);
+        aMatrix.add(cellList1);
+        assertDoesNotThrow(()->{Board board = new Board(2,2,aMatrix);});
+
+    }
+
+    @Test
+    public void expectsToThrowExceptionWhenInvalidValuesAreGivenFor2ndParameterizedConstructorOfBoard(){
+
+        List<List<Cell>> aMatrix = new ArrayList<>();
+        List<Cell> cellList = new ArrayList<>();
+        cellList.add(new Cell(false));
+        cellList.add(new Cell(true));
+        List<Cell> cellList1 = new ArrayList<>();
+        cellList1.add(new Cell(true));
+        cellList1.add(new Cell(true));
+        aMatrix.add(cellList);
+        aMatrix.add(cellList1);
+        IllegalStateException thrown = assertThrows(IllegalStateException.class,()->{Board board = new Board(0,2,aMatrix);});
+        assertEquals("Invalid data provided...", thrown.getMessage());
+    }
+
+    @Test
     public void expectsToCreateABoardOfNCrossM(){
 
         Board board = new Board(3,3);
@@ -72,7 +104,7 @@ public class BoardTest {
         cellList1.add(new Cell(true));
         aMatrix.add(cellList);
         aMatrix.add(cellList1);
-        Board board = new Board(aMatrix);
+        Board board = new Board(2,2,aMatrix);
         assertEquals(true, board.checkNeighbourAt(0,1));
 
 
@@ -91,7 +123,7 @@ public class BoardTest {
         cellList1.add(new Cell(true));
         aMatrix.add(cellList);
         aMatrix.add(cellList1);
-        Board board = new Board(aMatrix);
+        Board board = new Board(2,2,aMatrix);
         Integer liveNeighbours = board.countLiveNeighbours(0,0);
         assertEquals(3,liveNeighbours);
 
@@ -109,7 +141,7 @@ public class BoardTest {
         cellList1.add(new Cell(true));
         aMatrix.add(cellList);
         aMatrix.add(cellList1);
-        Board board = new Board(aMatrix);
+        Board board = new Board(2,2,aMatrix);
         Cell resultCell = board.cellForNextGeneration(0,0);
         assertEquals(true,resultCell.isAlive());
 
@@ -128,7 +160,7 @@ public class BoardTest {
         cellList1.add(new Cell(true));
         aMatrix.add(cellList);
         aMatrix.add(cellList1);
-        Board board = new Board(aMatrix);
+        Board board = new Board(2,2,aMatrix);
         Cell resultCell = board.cellForNextGeneration(0,1);
         assertEquals(true,resultCell.isAlive());
 
@@ -146,7 +178,7 @@ public class BoardTest {
         cellList1.add(new Cell(true));
         aMatrix.add(cellList);
         aMatrix.add(cellList1);
-        Board board = new Board(aMatrix);
+        Board board = new Board(2,2,aMatrix);
         Cell resultCell = board.cellForNextGeneration(1,0);
         assertEquals(false,resultCell.isAlive());
 
@@ -157,9 +189,16 @@ public class BoardTest {
 
         Board board = new Board(3,3);
         Board anotherBoard = new Board(3,3);
-
         assertEquals(true,board.equals(anotherBoard));
 
+    }
+
+    @Test
+    public void expectsToGiveFalseWhenTwoBoardsAreComparedAfterOneBeingPopulated(){
+        Board board = new Board(3,3);
+        board.populate();
+        Board anotherBoard = new Board(3,3);
+        assertEquals(false,board.equals(anotherBoard));
 
     }
 
@@ -182,7 +221,7 @@ public class BoardTest {
         aMatrix.add(cellList);
         aMatrix.add(cellList1);
         aMatrix.add(cellList2);
-        Board board = new Board(aMatrix);
+        Board board = new Board(3,3,aMatrix);
         Cell resultCell = board.cellForNextGeneration(1,1);
         assertEquals(false,resultCell.isAlive());
 
@@ -190,20 +229,12 @@ public class BoardTest {
 
 
     @Test
-    public void expectsToGiveMatrixForNextLifeWhichWillBeDifferentThanTheFirstOne(){
+    public void expectsToGiveBoardForNextGenerationWhichWillBeDifferentThanTheFirstOne(){
 
-//        List<List<Cell>> aMatrix = new ArrayList<>();
-//        List<Cell> cellList = new ArrayList<>();
-//        cellList.add(new Cell(false));
-//        cellList.add(new Cell(false));
-//        List<Cell> cellList1 = new ArrayList<>();
-//        cellList1.add(new Cell(true));
-//        cellList1.add(new Cell(true));
-//        aMatrix.add(cellList);
-//        aMatrix.add(cellList1);
-//        Board board = new Board(aMatrix);
-//        List<List<Cell>> nextMatrix =  board.matrixForNextGeneration();
-//        assertNotEquals(nextMatrix, aMatrix);
+        Board board = new Board(2,2);
+        board.populate();
+        Board nextBoard = board.boardForNextGeneration();
+        assertTrue(!(board.equals(nextBoard)));
 
     }
 
