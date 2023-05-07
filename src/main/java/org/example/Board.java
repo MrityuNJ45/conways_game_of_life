@@ -154,10 +154,6 @@ public class Board {
 
     public boolean equals(Board board){
 
-        System.out.println(this.rows == board.rows);
-        System.out.println(this.columns == board.columns);
-        System.out.println(this.matrix == board.matrix);
-
         return this.rows == board.rows && this.columns == board.columns && this.matrix.equals(board.matrix);
 
     }
