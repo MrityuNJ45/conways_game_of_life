@@ -78,20 +78,20 @@ public class Board {
 
     }
 
-//    public void printBoard(){
-//
-//        for(List<Cell> list : this.matrix){
-//            for(Cell cell : list){
-//                if(cell.isAlive())
-//                    System.out.print(1 + " ");
-//                else
-//                    System.out.print(0 +" ");
-//            }
-//            System.out.println();
-//        }
-//
-//
-//    }
+    public void printBoard(){
+
+        for(List<Cell> list : this.matrix){
+            for(Cell cell : list){
+                if(cell.isAlive())
+                    System.out.print(1 + " ");
+                else
+                    System.out.print(0 +" ");
+            }
+            System.out.println();
+        }
+
+
+    }
 
     public Boolean checkNeighbourAt(Integer rowNo, Integer columnNo){
 
@@ -137,7 +137,7 @@ public class Board {
 
     }
 
-    public List<List<Cell>> matrixForNextGeneration(){
+    public void boardForNextGeneration(){
         List<List<Cell>> nextMatrix = new ArrayList<>();
 
          for(int i=0; i<this.rows; i++){
@@ -149,10 +149,24 @@ public class Board {
              nextMatrix.add(nextMatrixRow);
          }
 
-         return nextMatrix;
+         this.matrix = nextMatrix;
     }
 
+    public boolean equals(Board board){
 
+        System.out.println(this.rows == board.rows);
+        System.out.println(this.columns == board.columns);
+        System.out.println(this.matrix == board.matrix);
+
+        return this.rows == board.rows && this.columns == board.columns && this.matrix.equals(board.matrix);
+
+    }
+//    public void replaceMatrixForNextGeneration(){
+//
+//        List<List<Cell>> nextMatrix = this.matrixForNextGeneration();
+//        this.matrix = nextMatrix;
+//
+//    }
 
 
 

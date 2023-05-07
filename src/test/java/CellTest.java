@@ -17,5 +17,33 @@ public class CellTest {
     }
 
 
+    @Test
+    public void expectsTrueWhenTwoCellsHaveSameIsAliveCondition(){
+        Cell cell = new Cell(true);
+        Cell anotherCell = new Cell(true);
+        assertEquals(true,cell.equals(anotherCell));
+    }
+
+    @Test
+    public void expectsFalseWhenTwoCellsHaveDifferentIsAliveCondition(){
+        Cell cell = new Cell(true);
+        Cell anotherCell = new Cell(false);
+        assertEquals(false,cell.equals(anotherCell));
+    }
+
+
+    @Test
+    public void expectsToGiveSameHashcodeForEqualCells(){
+        Cell cell = new Cell(true);
+        Cell anotherCell = new Cell(true);
+        assertEquals(cell.hashCode(), anotherCell.hashCode());
+    }
+
+    @Test
+    public void expectsToGiveDifferentHashcodeForDifferentCells(){
+        Cell cell = new Cell(true);
+        Cell anotherCell = new Cell(false);
+        assertNotEquals(cell.hashCode(), anotherCell.hashCode());
+    }
 
 }
