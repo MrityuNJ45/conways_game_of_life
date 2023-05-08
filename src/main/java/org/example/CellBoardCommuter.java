@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.List;
 
-public class NumOfLiveNeighboursGetter {
+public class CellBoardCommuter {
 
     public static Boolean isCellAliveAt(Integer rowNo, Integer columnNo,  List<List<Cell>> matrix){
 
