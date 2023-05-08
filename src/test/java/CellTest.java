@@ -46,4 +46,38 @@ public class CellTest {
         assertNotEquals(cell.hashCode(), anotherCell.hashCode());
     }
 
+    @Test
+    public void expectsToGiveLiveCellWhenLiveCellSurroundedBy2or3LiveCells(){
+        Cell cell = new Cell(true);
+        Cell resultFor2LiveCell = cell.cellForNextGeneration(2);
+        Cell resultFor3LiveCell = cell.cellForNextGeneration(3);
+        assertEquals(true,resultFor2LiveCell.isAlive());
+        assertEquals(true,resultFor3LiveCell.isAlive());
+    }
+
+    @Test
+    public void expectsToGiveDeadCellWhenLiveCellSurroundedByLessThan2LiveCells(){
+        Cell cell = new Cell(true);
+        Cell resultantCell = cell.cellForNextGeneration(1);
+        assertEquals(false,resultantCell.isAlive());
+
+    }
+
+    @Test
+    public void expectsToGiveDeadCellWhenLiveCellSurroundedByMoreThan3LiveCells(){
+        Cell cell = new Cell(true);
+        Cell resultantCell = cell.cellForNextGeneration(4);
+        assertEquals(false,resultantCell.isAlive());
+
+    }
+
+    @Test
+    public void expectsToGiveALiveCellWhenADeadCellIsSurroundedByExactly3LiveCells(){
+
+        Cell cell = new Cell(false);
+        Cell resultantCell = cell.cellForNextGeneration(3);
+        assertEquals(true,resultantCell.isAlive());
+
+    }
+
 }

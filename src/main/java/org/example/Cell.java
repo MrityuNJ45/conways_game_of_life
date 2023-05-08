@@ -17,6 +17,22 @@ public class Cell {
 
     }
 
+    public Cell cellForNextGeneration(Integer noOfLiveCells) {
+
+       
+        if (this.isAlive()) {
+            if (noOfLiveCells >= 2 && noOfLiveCells <= 3) {
+                return new Cell(true);
+            }
+        }
+        if (noOfLiveCells == 3) {
+            return new Cell(true);
+        }
+
+        return new Cell(false);
+
+    }
+
     @Override
     public boolean equals(Object o) {
 

@@ -41,11 +41,7 @@ public class Board {
 
     }
 
-    public Integer getNumOfElements() {
 
-        return this.columns * this.rows;
-
-    }
 
 
     public void populate() {
@@ -67,17 +63,8 @@ public class Board {
 
     }
 
-    public Integer numOfLiveCells() {
 
-        Integer liveCells = 0;
-        for (List<Cell> cellList : this.matrix) {
-            for (Cell cell : cellList) {
-                if (cell.isAlive()) liveCells++;
-            }
-        }
-        return liveCells;
 
-    }
 
     public void printBoard() {
 
@@ -93,48 +80,6 @@ public class Board {
 
     }
 
-    public Boolean isCellAliveAt(Integer rowNo, Integer columnNo) {
-
-        if (rowNo < 0 || columnNo < 0 || rowNo >= this.rows || columnNo >= this.columns) {
-            return false;
-        }
-
-        return this.matrix.get(rowNo).get(columnNo).isAlive();
-
-    }
-
-    public Integer countLiveNeighbours(Integer rowNo, Integer columNo) {
-
-        Integer count = 0;
-        if (isCellAliveAt(rowNo + 1, columNo)) count += 1;
-        if (isCellAliveAt(rowNo - 1, columNo)) count += 1;
-        if (isCellAliveAt(rowNo, columNo + 1)) count += 1;
-        if (isCellAliveAt(rowNo, columNo - 1)) count += 1;
-        if (isCellAliveAt(rowNo + 1, columNo + 1)) count += 1;
-        if (isCellAliveAt(rowNo + 1, columNo - 1)) count += 1;
-        if (isCellAliveAt(rowNo - 1, columNo + 1)) count += 1;
-        if (isCellAliveAt(rowNo - 1, columNo - 1)) count += 1;
-
-        return count;
-
-    }
-
-    public Cell cellForNextGeneration(Integer rowNo, Integer columnNo) {
-
-        Integer liveCells = countLiveNeighbours(rowNo, columnNo);
-        Cell cellAtPosition = this.matrix.get(rowNo).get(columnNo);
-        if (cellAtPosition.isAlive()) {
-            if (liveCells >= 2 && liveCells <= 3) {
-                return new Cell(true);
-            }
-        }
-        if (liveCells == 3) {
-            return new Cell(true);
-        }
-
-        return new Cell(false);
-
-    }
 
     public Board boardForNextGeneration() {
 
@@ -142,8 +87,9 @@ public class Board {
         for (int row = 0; row < this.rows; row++) {
             List<Cell> nextMatrixRow = new ArrayList<>();
             for (int column = 0; column < this.columns; column++) {
-                Cell generatedCell = cellForNextGeneration(row, column);
-                nextMatrixRow.add(generatedCell);
+                 Integer noOfLiveCells = NumOfLiveNeighboursGetter.getNumberOfLiveNeighboursAt(row, column, this.matrix);
+                 Cell nextCell = this.matrix.get(row).get(column).cellForNextGeneration(noOfLiveCells);
+                 nextMatrixRow.add(nextCell);
             }
             nextMatrix.add(nextMatrixRow);
         }
