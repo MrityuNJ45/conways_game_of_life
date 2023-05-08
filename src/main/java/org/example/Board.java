@@ -51,7 +51,7 @@ public class Board {
     public void populate() {
 
         List<List<Cell>> randomMatrix = new ArrayList<>();
-        for (int i = 0; i < rows; i++) {
+        for (int i = 0; i < this.rows; i++) {
             List<Cell> randomMatrixRow = new ArrayList<>();
             for (int j = 0; j < columns; j++) {
                 Integer random = Math.toIntExact(Math.round(Math.random()));
@@ -93,7 +93,7 @@ public class Board {
 
     }
 
-    public Boolean isNeighbourAliveAt(Integer rowNo, Integer columnNo) {
+    public Boolean isCellAliveAt(Integer rowNo, Integer columnNo) {
 
         if (rowNo < 0 || columnNo < 0 || rowNo >= this.rows || columnNo >= this.columns) {
             return false;
@@ -106,14 +106,14 @@ public class Board {
     public Integer countLiveNeighbours(Integer rowNo, Integer columNo) {
 
         Integer count = 0;
-        if (isNeighbourAliveAt(rowNo + 1, columNo)) count += 1;
-        if (isNeighbourAliveAt(rowNo - 1, columNo)) count += 1;
-        if (isNeighbourAliveAt(rowNo, columNo + 1)) count += 1;
-        if (isNeighbourAliveAt(rowNo, columNo - 1)) count += 1;
-        if (isNeighbourAliveAt(rowNo + 1, columNo + 1)) count += 1;
-        if (isNeighbourAliveAt(rowNo + 1, columNo - 1)) count += 1;
-        if (isNeighbourAliveAt(rowNo - 1, columNo + 1)) count += 1;
-        if (isNeighbourAliveAt(rowNo - 1, columNo - 1)) count += 1;
+        if (isCellAliveAt(rowNo + 1, columNo)) count += 1;
+        if (isCellAliveAt(rowNo - 1, columNo)) count += 1;
+        if (isCellAliveAt(rowNo, columNo + 1)) count += 1;
+        if (isCellAliveAt(rowNo, columNo - 1)) count += 1;
+        if (isCellAliveAt(rowNo + 1, columNo + 1)) count += 1;
+        if (isCellAliveAt(rowNo + 1, columNo - 1)) count += 1;
+        if (isCellAliveAt(rowNo - 1, columNo + 1)) count += 1;
+        if (isCellAliveAt(rowNo - 1, columNo - 1)) count += 1;
 
         return count;
 
@@ -139,10 +139,10 @@ public class Board {
     public Board boardForNextGeneration() {
 
         List<List<Cell>> nextMatrix = new ArrayList<>();
-        for (int i = 0; i < this.rows; i++) {
+        for (int row = 0; row < this.rows; row++) {
             List<Cell> nextMatrixRow = new ArrayList<>();
-            for (int j = 0; j < this.columns; j++) {
-                Cell generatedCell = cellForNextGeneration(i, j);
+            for (int column = 0; column < this.columns; column++) {
+                Cell generatedCell = cellForNextGeneration(row, column);
                 nextMatrixRow.add(generatedCell);
             }
             nextMatrix.add(nextMatrixRow);
