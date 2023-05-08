@@ -91,7 +91,7 @@ public class Board {
 
     }
 
-    public Boolean checkNeighbourAt(Integer rowNo, Integer columnNo) {
+    public Boolean isNeighbourAliveAt(Integer rowNo, Integer columnNo) {
 
         if (rowNo < 0 || columnNo < 0 || rowNo >= this.rows || columnNo >= this.columns) {
             return false;
@@ -104,14 +104,14 @@ public class Board {
     public Integer countLiveNeighbours(Integer rowNo, Integer columNo) {
 
         Integer count = 0;
-        if (checkNeighbourAt(rowNo + 1, columNo)) count += 1;
-        if (checkNeighbourAt(rowNo - 1, columNo)) count += 1;
-        if (checkNeighbourAt(rowNo, columNo + 1)) count += 1;
-        if (checkNeighbourAt(rowNo, columNo - 1)) count += 1;
-        if (checkNeighbourAt(rowNo + 1, columNo + 1)) count += 1;
-        if (checkNeighbourAt(rowNo + 1, columNo - 1)) count += 1;
-        if (checkNeighbourAt(rowNo - 1, columNo + 1)) count += 1;
-        if (checkNeighbourAt(rowNo - 1, columNo - 1)) count += 1;
+        if (isNeighbourAliveAt(rowNo + 1, columNo)) count += 1;
+        if (isNeighbourAliveAt(rowNo - 1, columNo)) count += 1;
+        if (isNeighbourAliveAt(rowNo, columNo + 1)) count += 1;
+        if (isNeighbourAliveAt(rowNo, columNo - 1)) count += 1;
+        if (isNeighbourAliveAt(rowNo + 1, columNo + 1)) count += 1;
+        if (isNeighbourAliveAt(rowNo + 1, columNo - 1)) count += 1;
+        if (isNeighbourAliveAt(rowNo - 1, columNo + 1)) count += 1;
+        if (isNeighbourAliveAt(rowNo - 1, columNo - 1)) count += 1;
 
         return count;
 

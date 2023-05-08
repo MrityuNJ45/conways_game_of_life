@@ -111,7 +111,7 @@ public class BoardTest {
         aMatrix.add(cellList);
         aMatrix.add(cellList1);
         Board board = new Board(2, 2, aMatrix);
-        assertEquals(true, board.checkNeighbourAt(0, 1));
+        assertEquals(true, board.isNeighbourAliveAt(0, 1));
 
 
     }
