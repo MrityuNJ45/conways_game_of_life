@@ -113,7 +113,6 @@ public class BoardTest {
         Board board = new Board(2, 2, aMatrix);
         assertEquals(true, board.isNeighbourAliveAt(0, 1));
 
-
     }
 
 

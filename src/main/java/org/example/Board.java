@@ -31,12 +31,14 @@ public class Board {
     }
 
     public Board(Integer rows, Integer columns, List<List<Cell>> matrix) throws IllegalStateException {
+
         if (rows <= 0 || columns <= 0 || !(matrix instanceof List<List<Cell>>)) {
             throw new IllegalStateException("Invalid data provided...");
         }
         this.rows = rows;
         this.columns = columns;
         this.matrix = matrix;
+
     }
 
     public Integer getNumOfElements() {
@@ -129,13 +131,14 @@ public class Board {
         if (liveCells == 3) {
             return new Cell(true);
         }
+
         return new Cell(false);
 
     }
 
     public Board boardForNextGeneration() {
-        List<List<Cell>> nextMatrix = new ArrayList<>();
 
+        List<List<Cell>> nextMatrix = new ArrayList<>();
         for (int i = 0; i < this.rows; i++) {
             List<Cell> nextMatrixRow = new ArrayList<>();
             for (int j = 0; j < this.columns; j++) {
@@ -146,6 +149,7 @@ public class Board {
         }
 
         return new Board(this.rows, this.columns, nextMatrix);
+
     }
 
     public boolean equals(Board board) {
