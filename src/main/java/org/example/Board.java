@@ -30,10 +30,7 @@ public class Board {
 
     }
 
-    // NOTE : Just for testing purpose not to be used.
-
-
-    public Board(Integer rows, Integer columns, List<List<Cell>> matrix) throws IllegalStateException{
+ public Board(Integer rows, Integer columns, List<List<Cell>> matrix) throws IllegalStateException{
         if(rows <= 0 || columns <= 0 || !(matrix instanceof List<List<Cell>>)){
             throw new IllegalStateException("Invalid data provided...");
         }
