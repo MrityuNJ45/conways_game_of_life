@@ -23,7 +23,7 @@ public class Board {
         for (int i = 0; i < rows; i++) {
             List<Cell> list = new ArrayList<>();
             for (int j = 0; j < columns; j++) {
-                list.add(new Cell(false));
+                list.add(new Cell(i,j,false));
             }
             matrix.add(list);
         }
@@ -52,10 +52,10 @@ public class Board {
             for (int j = 0; j < columns; j++) {
                 Integer random = Math.toIntExact(Math.round(Math.random()));
                 if (random == 0) {
-                    randomMatrixRow.add(new Cell(false));
+                    randomMatrixRow.add(new Cell(i,j,false));
                     continue;
                 }
-                randomMatrixRow.add(new Cell(true));
+                randomMatrixRow.add(new Cell(i,j,true));
             }
             randomMatrix.add(randomMatrixRow);
         }
@@ -87,7 +87,8 @@ public class Board {
         for (int row = 0; row < this.rows; row++) {
             List<Cell> nextMatrixRow = new ArrayList<>();
             for (int column = 0; column < this.columns; column++) {
-                 Integer noOfLiveCells = CellBoardCommunicator.getNumberOfLiveNeighboursAt(row, column, this.matrix);
+                 Cell currentCell = this.matrix.get(row).get(column);
+                 Integer noOfLiveCells = currentCell.getNoOfLiveNeighbours(this.matrix);
                  Cell nextCell = this.matrix.get(row).get(column).cellForNextGeneration(noOfLiveCells);
                  nextMatrixRow.add(nextCell);
             }

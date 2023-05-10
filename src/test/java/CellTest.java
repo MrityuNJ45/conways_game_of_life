@@ -2,82 +2,86 @@ import org.example.Cell;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CellTest {
 
     @Test
-    public void expectsToCreateAnAliveCell(){
-        Cell cell = new Cell( true);
-        assertTrue(cell.isAlive());
-    }
+    public void expectsToCreateCell(){
 
-    @Test
-    public void expectsToCreateAnDeadCell(){
-        Cell cell = new Cell( false);
-        assertFalse(cell.isAlive());
-    }
-
-
-    @Test
-    public void expectsTrueWhenTwoCellsHaveSameIsAliveCondition(){
-        Cell cell = new Cell(true);
-        Cell anotherCell = new Cell(true);
-        assertEquals(true,cell.equals(anotherCell));
-    }
-
-    @Test
-    public void expectsFalseWhenTwoCellsHaveDifferentIsAliveCondition(){
-        Cell cell = new Cell(true);
-        Cell anotherCell = new Cell(false);
-        assertEquals(false,cell.equals(anotherCell));
-    }
-
-
-    @Test
-    public void expectsToGiveSameHashcodeForEqualCells(){
-        Cell cell = new Cell(true);
-        Cell anotherCell = new Cell(true);
-        assertEquals(cell.hashCode(), anotherCell.hashCode());
-    }
-
-    @Test
-    public void expectsToGiveDifferentHashcodeForDifferentCells(){
-        Cell cell = new Cell(true);
-        Cell anotherCell = new Cell(false);
-        assertNotEquals(cell.hashCode(), anotherCell.hashCode());
-    }
-
-    @Test
-    public void expectsToGiveLiveCellWhenLiveCellSurroundedBy2or3LiveCells(){
-        Cell cell = new Cell(true);
-        Cell resultFor2LiveCell = cell.cellForNextGeneration(2);
-        Cell resultFor3LiveCell = cell.cellForNextGeneration(3);
-        assertEquals(true,resultFor2LiveCell.isAlive());
-        assertEquals(true,resultFor3LiveCell.isAlive());
-    }
-
-    @Test
-    public void expectsToGiveDeadCellWhenLiveCellSurroundedByLessThan2LiveCells(){
-        Cell cell = new Cell(true);
-        Cell resultantCell = cell.cellForNextGeneration(1);
-        assertEquals(false,resultantCell.isAlive());
+        assertDoesNotThrow(() -> new Cell(0,0,true));
 
     }
 
     @Test
-    public void expectsToGiveDeadCellWhenLiveCellSurroundedByMoreThan3LiveCells(){
-        Cell cell = new Cell(true);
-        Cell resultantCell = cell.cellForNextGeneration(4);
-        assertEquals(false,resultantCell.isAlive());
+    public void expectsToGetTrueWhenAliveCellCheckedForIsAlive(){
+        assertTrue(new Cell(0,0,true).isAlive());
+    }
+
+    @Test
+    public void expectsToGetFalseWhenDeadCellCheckedForIsAlive(){
+        assertFalse(new Cell(0,0,false).isAlive());
+    }
+
+    @Test
+    public void expects3LiveNeighbours(){
+
+        List<List<Cell>> aMatrix = new ArrayList<>();
+        List<Cell> cellList1 = new ArrayList<>();
+        cellList1.add(new Cell(0,0, false));
+        cellList1.add(new Cell(0,1,true));
+        List<Cell> cellList2 = new ArrayList<>();
+        cellList2.add(new Cell(1,0, true));
+        cellList2.add(new Cell(1,1,true));
+        aMatrix.add(cellList1);
+        aMatrix.add(cellList2);
+        Cell cell = new Cell(0,0, false);
+        Integer ans = cell.getNoOfLiveNeighbours(aMatrix);
+        assertEquals(3,ans);
 
     }
 
     @Test
-    public void expectsToGiveALiveCellWhenADeadCellIsSurroundedByExactly3LiveCells(){
+    public void expectsCellForNextGenerationToBeAliveWhenSurroundedWith3AliveNeighbours(){
 
-        Cell cell = new Cell(false);
-        Cell resultantCell = cell.cellForNextGeneration(3);
-        assertEquals(true,resultantCell.isAlive());
+        List<List<Cell>> aMatrix = new ArrayList<>();
+        List<Cell> cellList1 = new ArrayList<>();
+        cellList1.add(new Cell(0,0, false));
+        cellList1.add(new Cell(0,1,true));
+        List<Cell> cellList2 = new ArrayList<>();
+        cellList2.add(new Cell(1,0, true));
+        cellList2.add(new Cell(1,1,true));
+        aMatrix.add(cellList1);
+        aMatrix.add(cellList2);
+        Cell cell = new Cell(0,0, false);
+        Integer ans = cell.getNoOfLiveNeighbours(aMatrix);
+        Cell result  = cell.cellForNextGeneration(ans);
+
+        assertTrue(result.isAlive());
 
     }
+
+    @Test
+    public void expectsCellForNextGenerationToBeDeadWhenSurroundedWithLessThan2AliveNeighbours(){
+
+        List<List<Cell>> aMatrix = new ArrayList<>();
+        List<Cell> cellList1 = new ArrayList<>();
+        cellList1.add(new Cell(0,0, false));
+        cellList1.add(new Cell(0,1,true));
+        List<Cell> cellList2 = new ArrayList<>();
+        cellList2.add(new Cell(1,0, true));
+        cellList2.add(new Cell(1,1,false));
+        aMatrix.add(cellList1);
+        aMatrix.add(cellList2);
+        Cell cell = new Cell(0,0, false);
+        Integer ans = cell.getNoOfLiveNeighbours(aMatrix);
+        Cell result  = cell.cellForNextGeneration(ans);
+
+        assertTrue(!result.isAlive());
+
+    }
+
+
 
 }

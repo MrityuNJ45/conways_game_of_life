@@ -32,17 +32,16 @@ public class BoardTest {
 
     }
 
-
     @Test
     public void expectsToNotThrowExceptionWhenValidDataIsGivenFor2ndParameterizedConstructorOfBoard() {
 
         List<List<Cell>> aMatrix = new ArrayList<>();
         List<Cell> cellList = new ArrayList<>();
-        cellList.add(new Cell(false));
-        cellList.add(new Cell(true));
+        cellList.add(new Cell(0,0,false));
+        cellList.add(new Cell(0,1,true));
         List<Cell> cellList1 = new ArrayList<>();
-        cellList1.add(new Cell(true));
-        cellList1.add(new Cell(true));
+        cellList1.add(new Cell(1,0,true));
+        cellList1.add(new Cell(1,1,true));
         aMatrix.add(cellList);
         aMatrix.add(cellList1);
         assertDoesNotThrow(() -> {
@@ -56,11 +55,11 @@ public class BoardTest {
 
         List<List<Cell>> aMatrix = new ArrayList<>();
         List<Cell> cellList = new ArrayList<>();
-        cellList.add(new Cell(false));
-        cellList.add(new Cell(true));
+        cellList.add(new Cell(0,0,false));
+        cellList.add(new Cell(0,1,true));
         List<Cell> cellList1 = new ArrayList<>();
-        cellList1.add(new Cell(true));
-        cellList1.add(new Cell(true));
+        cellList1.add(new Cell(1,0,true));
+        cellList1.add(new Cell(1,1,true));
         aMatrix.add(cellList);
         aMatrix.add(cellList1);
         IllegalStateException thrown = assertThrows(IllegalStateException.class, () -> {
@@ -85,11 +84,11 @@ public class BoardTest {
         Board board = new Board(2,2);
         List<List<Cell>> aMatrix = new ArrayList<>();
         List<Cell> cellList = new ArrayList<>();
-        cellList.add(new Cell(false));
-        cellList.add(new Cell(true));
+        cellList.add(new Cell(0,0,false));
+        cellList.add(new Cell(0,1,true));
         List<Cell> cellList1 = new ArrayList<>();
-        cellList1.add(new Cell(true));
-        cellList1.add(new Cell(true));
+        cellList1.add(new Cell(1,0,true));
+        cellList1.add(new Cell(1,1,true));
         aMatrix.add(cellList);
         aMatrix.add(cellList1);
         Board anotherBoard = new Board(2,2,aMatrix);
@@ -113,22 +112,22 @@ public class BoardTest {
 
         List<List<Cell>> aMatrix = new ArrayList<>();
         List<Cell> cellList = new ArrayList<>();
-        cellList.add(new Cell(false));
-        cellList.add(new Cell(true));
+        cellList.add(new Cell(0,0,false));
+        cellList.add(new Cell(0,1,true));
         List<Cell> cellList1 = new ArrayList<>();
-        cellList1.add(new Cell(true));
-        cellList1.add(new Cell(true));
+        cellList1.add(new Cell(1,0,true));
+        cellList1.add(new Cell(1,1,true));
         aMatrix.add(cellList);
         aMatrix.add(cellList1);
         Board board = new Board(2,2,aMatrix);
 
         List<List<Cell>> anotherMatrix = new ArrayList<>();
         List<Cell> cellList3 = new ArrayList<>();
-        cellList3.add(new Cell(true));
-        cellList3.add(new Cell(true));
+        cellList3.add(new Cell(0,0,true));
+        cellList3.add(new Cell(0,1,true));
         List<Cell> cellList4 = new ArrayList<>();
-        cellList4.add(new Cell(true));
-        cellList4.add(new Cell(true));
+        cellList4.add(new Cell(1,0,true));
+        cellList4.add(new Cell(1,1,true));
         anotherMatrix.add(cellList3);
         anotherMatrix.add(cellList4);
         Board correctNextGenBoard = new Board(2,2,anotherMatrix);
@@ -142,22 +141,22 @@ public class BoardTest {
 
         List<List<Cell>> aMatrix = new ArrayList<>();
         List<Cell> cellList = new ArrayList<>();
-        cellList.add(new Cell(false));
-        cellList.add(new Cell(true));
+        cellList.add(new Cell(0,0,false));
+        cellList.add(new Cell(0,1,true));
         List<Cell> cellList1 = new ArrayList<>();
-        cellList1.add(new Cell(true));
-        cellList1.add(new Cell(true));
+        cellList1.add(new Cell(1,0,true));
+        cellList1.add(new Cell(1,1,true));
         aMatrix.add(cellList);
         aMatrix.add(cellList1);
         Board board = new Board(2,2,aMatrix);
 
         List<List<Cell>> anotherMatrix = new ArrayList<>();
         List<Cell> cellList3 = new ArrayList<>();
-        cellList3.add(new Cell(false));
-        cellList3.add(new Cell(true));
+        cellList3.add(new Cell(0,0,false));
+        cellList3.add(new Cell(0,1,true));
         List<Cell> cellList4 = new ArrayList<>();
-        cellList4.add(new Cell(true));
-        cellList4.add(new Cell(true));
+        cellList4.add(new Cell(1,0,true));
+        cellList4.add(new Cell(1,1,true));
         anotherMatrix.add(cellList3);
         anotherMatrix.add(cellList4);
         Board randomBoard = new Board(2,2,anotherMatrix);
