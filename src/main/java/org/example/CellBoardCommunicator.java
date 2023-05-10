@@ -1,8 +1,8 @@
 package org.example;
 
-import java.util.List;
+import java.util.*;
+public class CellBoardCommunicator {
 
-public class CellBoardCommuter {
 
     public static Boolean isCellAliveAt(Integer rowNo, Integer columnNo,  List<List<Cell>> matrix){
 
@@ -29,7 +29,6 @@ public class CellBoardCommuter {
 
 
     }
-
 
 
 

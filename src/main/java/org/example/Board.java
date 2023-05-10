@@ -87,7 +87,7 @@ public class Board {
         for (int row = 0; row < this.rows; row++) {
             List<Cell> nextMatrixRow = new ArrayList<>();
             for (int column = 0; column < this.columns; column++) {
-                 Integer noOfLiveCells = CellBoardCommuter.getNumberOfLiveNeighboursAt(row, column, this.matrix);
+                 Integer noOfLiveCells = CellBoardCommunicator.getNumberOfLiveNeighboursAt(row, column, this.matrix);
                  Cell nextCell = this.matrix.get(row).get(column).cellForNextGeneration(noOfLiveCells);
                  nextMatrixRow.add(nextCell);
             }

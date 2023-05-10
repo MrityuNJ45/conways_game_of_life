@@ -1,12 +1,13 @@
 import org.example.Cell;
-import org.example.CellBoardCommuter;
+import org.example.CellBoardCommunicator;
+
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CellBoardCommuterTest {
+public class CellBoardCommunicatorTest {
 
     @Test
     public void expectsToReturnTrueWhenAliveCellIsPresent(){
@@ -20,7 +21,7 @@ public class CellBoardCommuterTest {
         cellList1.add(new Cell(true));
         aMatrix.add(cellList);
         aMatrix.add(cellList1);
-        boolean actual = CellBoardCommuter.isCellAliveAt(0,1,aMatrix);
+        boolean actual = CellBoardCommunicator.isCellAliveAt(0,1,aMatrix);
         assertEquals(true,actual);
 
     }
@@ -36,7 +37,7 @@ public class CellBoardCommuterTest {
         cellList1.add(new Cell(true));
         aMatrix.add(cellList);
         aMatrix.add(cellList1);
-        Integer actual = CellBoardCommuter.getNumberOfLiveNeighboursAt(0,0, aMatrix);
+        Integer actual = CellBoardCommunicator.getNumberOfLiveNeighboursAt(0,0, aMatrix);
         assertEquals(3,actual);
     }
 
