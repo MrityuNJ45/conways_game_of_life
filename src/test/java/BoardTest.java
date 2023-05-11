@@ -37,11 +37,11 @@ public class BoardTest {
 
         List<List<Cell>> aMatrix = new ArrayList<>();
         List<Cell> cellList = new ArrayList<>();
-        cellList.add(new Cell(0,0,false));
-        cellList.add(new Cell(0,1,true));
+        cellList.add(new Cell(0, 0, false));
+        cellList.add(new Cell(0, 1, true));
         List<Cell> cellList1 = new ArrayList<>();
-        cellList1.add(new Cell(1,0,true));
-        cellList1.add(new Cell(1,1,true));
+        cellList1.add(new Cell(1, 0, true));
+        cellList1.add(new Cell(1, 1, true));
         aMatrix.add(cellList);
         aMatrix.add(cellList1);
         assertDoesNotThrow(() -> {
@@ -55,11 +55,11 @@ public class BoardTest {
 
         List<List<Cell>> aMatrix = new ArrayList<>();
         List<Cell> cellList = new ArrayList<>();
-        cellList.add(new Cell(0,0,false));
-        cellList.add(new Cell(0,1,true));
+        cellList.add(new Cell(0, 0, false));
+        cellList.add(new Cell(0, 1, true));
         List<Cell> cellList1 = new ArrayList<>();
-        cellList1.add(new Cell(1,0,true));
-        cellList1.add(new Cell(1,1,true));
+        cellList1.add(new Cell(1, 0, true));
+        cellList1.add(new Cell(1, 1, true));
         aMatrix.add(cellList);
         aMatrix.add(cellList1);
         IllegalStateException thrown = assertThrows(IllegalStateException.class, () -> {
@@ -70,102 +70,100 @@ public class BoardTest {
     }
 
     @Test
-    public void expectsTrueWhenBoardsAreEqual(){
+    public void expectsTrueWhenBoardsAreEqual() {
 
-           Board board = new Board(2,2);
-           Board anotherBoard = new Board(2,2);
-           assertEquals(true, board.equals(anotherBoard));
+        Board board = new Board(2, 2);
+        Board anotherBoard = new Board(2, 2);
+        assertEquals(true, board.equals(anotherBoard));
 
     }
 
     @Test
-    public void expectsFalseWhenBoardsAreNotEqual(){
+    public void expectsFalseWhenBoardsAreNotEqual() {
 
-        Board board = new Board(2,2);
+        Board board = new Board(2, 2);
         List<List<Cell>> aMatrix = new ArrayList<>();
         List<Cell> cellList = new ArrayList<>();
-        cellList.add(new Cell(0,0,false));
-        cellList.add(new Cell(0,1,true));
+        cellList.add(new Cell(0, 0, false));
+        cellList.add(new Cell(0, 1, true));
         List<Cell> cellList1 = new ArrayList<>();
-        cellList1.add(new Cell(1,0,true));
-        cellList1.add(new Cell(1,1,true));
+        cellList1.add(new Cell(1, 0, true));
+        cellList1.add(new Cell(1, 1, true));
         aMatrix.add(cellList);
         aMatrix.add(cellList1);
-        Board anotherBoard = new Board(2,2,aMatrix);
+        Board anotherBoard = new Board(2, 2, aMatrix);
         assertEquals(false, board.equals(anotherBoard));
 
 
     }
 
     @Test
-    public void expectsToPopulateMeansWillBeDifferentFromTheFirstInitializationOfBoard(){
+    public void expectsToPopulateMeansWillBeDifferentFromTheFirstInitializationOfBoard() {
 
-        Board board = new Board(2,2);
-        Board anotherBoard = new Board(2,2);
+        Board board = new Board(2, 2);
+        Board anotherBoard = new Board(2, 2);
         board.populate();
-        assertEquals(false,board.equals(anotherBoard));
+        assertEquals(false, board.equals(anotherBoard));
 
     }
 
     @Test
-    public void expectsToTrueWhenABoardIsComparedWithCorrectNextGenerationBoard(){
+    public void expectsToTrueWhenABoardIsComparedWithCorrectNextGenerationBoard() {
 
         List<List<Cell>> aMatrix = new ArrayList<>();
         List<Cell> cellList = new ArrayList<>();
-        cellList.add(new Cell(0,0,false));
-        cellList.add(new Cell(0,1,true));
+        cellList.add(new Cell(0, 0, false));
+        cellList.add(new Cell(0, 1, true));
         List<Cell> cellList1 = new ArrayList<>();
-        cellList1.add(new Cell(1,0,true));
-        cellList1.add(new Cell(1,1,true));
+        cellList1.add(new Cell(1, 0, true));
+        cellList1.add(new Cell(1, 1, true));
         aMatrix.add(cellList);
         aMatrix.add(cellList1);
-        Board board = new Board(2,2,aMatrix);
+        Board board = new Board(2, 2, aMatrix);
 
         List<List<Cell>> anotherMatrix = new ArrayList<>();
         List<Cell> cellList3 = new ArrayList<>();
-        cellList3.add(new Cell(0,0,true));
-        cellList3.add(new Cell(0,1,true));
+        cellList3.add(new Cell(0, 0, true));
+        cellList3.add(new Cell(0, 1, true));
         List<Cell> cellList4 = new ArrayList<>();
-        cellList4.add(new Cell(1,0,true));
-        cellList4.add(new Cell(1,1,true));
+        cellList4.add(new Cell(1, 0, true));
+        cellList4.add(new Cell(1, 1, true));
         anotherMatrix.add(cellList3);
         anotherMatrix.add(cellList4);
-        Board correctNextGenBoard = new Board(2,2,anotherMatrix);
+        Board correctNextGenBoard = new Board(2, 2, anotherMatrix);
 
         assertTrue(board.boardForNextGeneration().equals(correctNextGenBoard));
 
     }
 
     @Test
-    public void expectFalseWhenABoardIsComparedWithInCorrectNextGenerationBoard(){
+    public void expectFalseWhenABoardIsComparedWithInCorrectNextGenerationBoard() {
 
         List<List<Cell>> aMatrix = new ArrayList<>();
         List<Cell> cellList = new ArrayList<>();
-        cellList.add(new Cell(0,0,false));
-        cellList.add(new Cell(0,1,true));
+        cellList.add(new Cell(0, 0, false));
+        cellList.add(new Cell(0, 1, true));
         List<Cell> cellList1 = new ArrayList<>();
-        cellList1.add(new Cell(1,0,true));
-        cellList1.add(new Cell(1,1,true));
+        cellList1.add(new Cell(1, 0, true));
+        cellList1.add(new Cell(1, 1, true));
         aMatrix.add(cellList);
         aMatrix.add(cellList1);
-        Board board = new Board(2,2,aMatrix);
+        Board board = new Board(2, 2, aMatrix);
 
         List<List<Cell>> anotherMatrix = new ArrayList<>();
         List<Cell> cellList3 = new ArrayList<>();
-        cellList3.add(new Cell(0,0,false));
-        cellList3.add(new Cell(0,1,true));
+        cellList3.add(new Cell(0, 0, false));
+        cellList3.add(new Cell(0, 1, true));
         List<Cell> cellList4 = new ArrayList<>();
-        cellList4.add(new Cell(1,0,true));
-        cellList4.add(new Cell(1,1,true));
+        cellList4.add(new Cell(1, 0, true));
+        cellList4.add(new Cell(1, 1, true));
         anotherMatrix.add(cellList3);
         anotherMatrix.add(cellList4);
-        Board randomBoard = new Board(2,2,anotherMatrix);
+        Board randomBoard = new Board(2, 2, anotherMatrix);
 
         assertFalse(board.boardForNextGeneration().equals(randomBoard));
 
     }
-
-
 
 
 }

@@ -23,7 +23,7 @@ public class Board {
         for (int i = 0; i < rows; i++) {
             List<Cell> list = new ArrayList<>();
             for (int j = 0; j < columns; j++) {
-                list.add(new Cell(i,j,false));
+                list.add(new Cell(i, j, false));
             }
             matrix.add(list);
         }
@@ -42,8 +42,6 @@ public class Board {
     }
 
 
-
-
     public void populate() {
 
         List<List<Cell>> randomMatrix = new ArrayList<>();
@@ -52,18 +50,16 @@ public class Board {
             for (int j = 0; j < columns; j++) {
                 Integer random = Math.toIntExact(Math.round(Math.random()));
                 if (random == 0) {
-                    randomMatrixRow.add(new Cell(i,j,false));
+                    randomMatrixRow.add(new Cell(i, j, false));
                     continue;
                 }
-                randomMatrixRow.add(new Cell(i,j,true));
+                randomMatrixRow.add(new Cell(i, j, true));
             }
             randomMatrix.add(randomMatrixRow);
         }
         this.matrix = randomMatrix;
 
     }
-
-
 
 
     public void printBoard() {
@@ -87,10 +83,10 @@ public class Board {
         for (int row = 0; row < this.rows; row++) {
             List<Cell> nextMatrixRow = new ArrayList<>();
             for (int column = 0; column < this.columns; column++) {
-                 Cell currentCell = this.matrix.get(row).get(column);
-                 Integer noOfLiveCells = currentCell.getNoOfLiveNeighbours(this.matrix);
-                 Cell nextCell = this.matrix.get(row).get(column).cellForNextGeneration(noOfLiveCells);
-                 nextMatrixRow.add(nextCell);
+                Cell currentCell = this.matrix.get(row).get(column);
+                Integer noOfLiveCells = currentCell.getNoOfLiveNeighbours(this.matrix);
+                Cell nextCell = this.matrix.get(row).get(column).cellForNextGeneration(noOfLiveCells);
+                nextMatrixRow.add(nextCell);
             }
             nextMatrix.add(nextMatrixRow);
         }

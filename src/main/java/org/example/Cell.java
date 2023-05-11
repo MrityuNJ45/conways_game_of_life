@@ -30,19 +30,19 @@ public class Cell {
         neighboursLocation.add(Arrays.asList(row + 1, column - 1));
     }
 
-    public Boolean isAlive(){
+    public Boolean isAlive() {
         return this.isAlive;
     }
 
 
-    public Integer getNoOfLiveNeighbours(List<List<Cell>> cellList){
+    public Integer getNoOfLiveNeighbours(List<List<Cell>> cellList) {
 
         Integer count = 0;
-        for(List<Integer> positions : this.neighboursLocation){
+        for (List<Integer> positions : this.neighboursLocation) {
             Integer row = positions.get(0);
             Integer column = positions.get(1);
-            if(row >= 0 && column >= 0 && row < cellList.size() && column < cellList.get(0).size()){
-                if(cellList.get(row).get(column).isAlive()){
+            if (row >= 0 && column >= 0 && row < cellList.size() && column < cellList.get(0).size()) {
+                if (cellList.get(row).get(column).isAlive()) {
                     count += 1;
                 }
             }
@@ -54,17 +54,17 @@ public class Cell {
 
     public Cell cellForNextGeneration(Integer noOfLiveCells) {
 
-       
+
         if (this.isAlive()) {
             if (noOfLiveCells >= 2 && noOfLiveCells <= 3) {
                 return new Cell(this.row, this.column, true);
             }
         }
         if (noOfLiveCells == 3) {
-            return new Cell(this.row, this.column,true);
+            return new Cell(this.row, this.column, true);
         }
 
-        return new Cell(this.row, this.column,false);
+        return new Cell(this.row, this.column, false);
 
     }
 
